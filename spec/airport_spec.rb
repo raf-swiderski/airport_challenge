@@ -3,11 +3,7 @@ describe Airport do
 
     before(:each) do
         @airport = Airport.new
-        @plane_1 = Plane.new
-        @plane_2 = Plane.new
-        @plane_3 = Plane.new
-        @plane_4 = Plane.new
-        @plane_5 = Plane.new
+        create_planes
     end
 
     it 'can land a plane' do
@@ -21,10 +17,7 @@ describe Airport do
     end
 
     it 'can prevent landing when airport is full' do
-        @airport.land(@plane_1)
-        @airport.land(@plane_2)
-        @airport.land(@plane_3)
-        @airport.land(@plane_4)
+        fill_up
         expect{@airport.land(@plane_5)}.to raise_error("The capacity at this airport is 4 planes")
     end
 
